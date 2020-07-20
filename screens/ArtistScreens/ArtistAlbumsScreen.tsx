@@ -39,7 +39,7 @@ export default function ArtistAlbumsScreen(props: {
     }, [])
 
     return (
-        <DeffaultLayout title={[props.route.params.artist+ ' Albums']}>
+        <DeffaultLayout title={[props.route.params.artist+ ' Albums',props.route.params.instagram+'insta']}>
             <FlatList
 
             data={albums}

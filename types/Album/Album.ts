@@ -1,6 +1,7 @@
 type Album = {
     id_artist?: number;
     artist?: string;
-    album: string,
-    id_album: number,
+    album: string;
+    id_album: number;
+    instagram:string;
 }

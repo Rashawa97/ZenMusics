@@ -19,9 +19,9 @@ export default function DefaultLayout(props:
     let { children, title } = props;
 
     const styles = StyleSheet.create({
-        mainContainer:{flex:1},
+        mainContainer: { flex: 1 },
         container: {
-            
+
             padding: 45,
             margin: 5,
             alignItems: "center",
@@ -43,6 +43,21 @@ export default function DefaultLayout(props:
             flex: 1,
             margin: 10,
             alignItems: "center"
+        },
+        socialMedia: {
+            alignItems: "flex-start",
+
+            flexDirection: "row",
+
+            justifyContent: 'space-between',
+
+
+        },
+        SocialIcon:{
+          flex:1,
+            margin: 5,
+            alignItems: "flex-start"
+
         }
 
     })
@@ -63,7 +78,18 @@ export default function DefaultLayout(props:
                     ))}
 
 
-              
+                    <View style={styles.socialMedia}>
+                        <View style={styles.SocialIcon} >
+                            <Ionicons name={'logo-facebook'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
+                        </View>
+                        <View style={styles.SocialIcon} >
+                            <Ionicons name={'logo-instagram'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
+                        </View>
+                        <View style={styles.SocialIcon} >
+                            <Ionicons name={'logo-twitter'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
+                        </View>
+
+                    </View>
 
                 </View>
                 <View style={styles.icon} >

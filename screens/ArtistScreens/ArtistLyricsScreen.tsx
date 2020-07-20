@@ -7,6 +7,8 @@ import { GetTracksService } from '../../services/GetTracksService'
 import { GetLyricsService } from '../../services/GetLyricsService'
 import DeffaultLayout from '../../components/Layouts/DefaultLayout'
 import { ScrollView } from 'react-native-gesture-handler'
+import ThemedNoLyrics from '../../components/ThemedNoLyrics'
+import ThemedLyrics from '../../components/ThemedLyrics'
 
 export default function ArtistLyricsScreen(props: {
     //still within artist stack so ArtistParamList is needed
@@ -32,21 +34,31 @@ export default function ArtistLyricsScreen(props: {
         return () => {
         }
     }, [])
-    return (
-        <DeffaultLayout
-            title={[props.route.params.track
-                ,props.route.params.album, props.route.params.artist]}  >
+    if (lyrics) {
 
-            <ScrollView>
-                <Text>
-                    {lyrics?lyrics:"NO LYRICS"}
-                    sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf sdlkafj asdkljf klasdjf klasjdf laksdjf klasjdf 
-                </Text>
-            </ScrollView>
+        return (
+            <DeffaultLayout
+                title={[props.route.params.track
+                    , props.route.params.album, props.route.params.artist]}  >
+
+         <ThemedLyrics lyrics={lyrics}/>
 
 
-        </DeffaultLayout>
-    )
+            </DeffaultLayout>
+        )
+
+
+    } else {
+        return (
+
+            <DeffaultLayout
+                title={[props.route.params.track
+                    , props.route.params.album, props.route.params.artist]}  >
+
+                <ThemedNoLyrics />
+
+            </DeffaultLayout>)
+    }
 }
 
 const styles = StyleSheet.create({})
