@@ -6,5 +6,5 @@ export enum FontSizes {
     large = 20,
     xLarge = 22,
     xxLarge = 24,
-    xxxLarge = 30
+    xxxLarge = 70
 }

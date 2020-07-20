@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ArtistsScreen from '../../screens/ArtistScreens/ArtistsScreen';
 import ArtistAlbumsScreen from '../../screens/ArtistScreens/ArtistAlbumsScreen';
 import ArtistTracksScreen from '../../screens/ArtistScreens/ArtistTracksScreen';
+import ArtistLyricsScreen from '../../screens/ArtistScreens/ArtistLyricsScreen';
 
 
 const ArtistsTab = createStackNavigator<ArtistParamList>();
@@ -29,7 +30,7 @@ export default function ArtistsStack() {
             />
             <ArtistsTab.Screen
                 name="ArtistLyricsScreen"
-                component={ArtistTracksScreen}
+                component={ArtistLyricsScreen}
                 options={{ headerTitle: 'Lyrics' }}
             />
         </ArtistsTab.Navigator>

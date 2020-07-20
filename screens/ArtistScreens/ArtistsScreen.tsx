@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, StyleSheet } from 'react-native'
-import { View, Text, useThemeColor } from '../../components/Themed'
+import { FlatList } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { GetArtistsPageService } from '../../services/GetArtistsPageService'
 import ArtistComponent from '../../components/Artists/ArtistComponent'
-import ThemedButton from '../../components/ThemedButton'
+import PaginationLayout from '../../components/Layouts/PaginationLayout'
 
 export default function ArtistsScreen(props:
     {
         navigation: StackNavigationProp<ArtistParamList, "ArtistsScreen">
     }) {
 
-    const styles = StyleSheet.create({
-        navigationButtonsContainer: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            margin: 5,
-            alignItems: "center",
-        
-            //backgroundColor: useThemeColor({},"mainColor")
-        }
-    })
 
-
-    const [pageNumber, setPageNumber] = useState<number>(1);
     const [artists, setArtists] = useState<Artist[]>([]);
     const [lastPage, setLastPage] = useState<number>(0);
 
 
 
-    const goToAlbums = (artistId: number) => {
-        props.navigation.navigate("ArtistAlbumsScreen", { artistId: artistId });
+    const goToAlbums = (artistId: number,artist:string) => {
+        props.navigation.navigate("ArtistAlbumsScreen", { artistId: artistId ,artist:artist});
     }
     //if first page ==1 then privious button must be disabled
     //if Last page page ==total number of pages then next button must be disabled
@@ -41,7 +28,6 @@ export default function ArtistsScreen(props:
             setArtists(response.result);
             setLastPage(response.pages)
         }
-        setPageNumber(pageNumber);
 
     }
 
@@ -52,16 +38,7 @@ export default function ArtistsScreen(props:
     }, [])
 
     return (
-        <View>
-          
-            <View style={styles.navigationButtonsContainer}>
-                <ThemedButton title="previous" onPress={() => getArtists(pageNumber - 1)} disabled={pageNumber == 1} />
-                <Text>{pageNumber}/{lastPage}</Text>
-                <ThemedButton title="next" onPress={() => getArtists(pageNumber + 1)} disabled={pageNumber == lastPage} />
-
-
-            </View>
-
+        <PaginationLayout onPageChange={getArtists} lastPage={lastPage}>
             <FlatList
 
                 data={artists}
@@ -70,8 +47,10 @@ export default function ArtistsScreen(props:
                     <ArtistComponent artist={item} onPress={goToAlbums} />
 
                 )} />
+        </PaginationLayout>
 
-        </View>
+
+
     )
 }
 
