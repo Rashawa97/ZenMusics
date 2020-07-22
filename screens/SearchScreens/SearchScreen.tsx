@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, FlatList } from 'react-native'
+import { StyleSheet, FlatList, View } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native'
-import { View, Text } from '../../components/Themed'
 import DefaultLayout from '../../components/Layouts/DefaultLayout'
 import { TextInput } from 'react-native-gesture-handler'
 import IconButton from '../../components/IconButton'
@@ -10,6 +9,7 @@ import { GetSearchResultService } from '../../services/GetSearchResultService'
 import ThemedCard from '../../components/ThemedCard'
 import SearchComponent from '../../components/SearchComponent'
 import { SaveRecentTracksService } from '../../services/SaveRecentTracksService'
+import { useThemeColor } from '../../components/Themed'
 
 export default function SearchScreen(props: {
     navigation: CompositeNavigationProp<
@@ -49,6 +49,9 @@ export default function SearchScreen(props: {
 
     return (
         <DefaultLayout title={[`search ${props.route.params.type}s`]}>
+            <View style={styles.floating}>
+                <IconButton icon="ios-close" color={useThemeColor({},"background")} onPress={() => props.navigation.goBack()} />
+            </View>
             <SearchComponent onPress={search} />
             <FlatList
 
@@ -74,4 +77,10 @@ export default function SearchScreen(props: {
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    floating:{
+        marginTop:-180,
+        height:20,
+        marginBottom:160,
+    }
+})

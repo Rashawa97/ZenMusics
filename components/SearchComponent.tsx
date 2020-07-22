@@ -38,7 +38,8 @@ export default function SearchComponent(props: { onPress: (query: string) => voi
 
         },
         icon: {
-            margin: 10,
+
+            paddingRight:55 ,
             alignItems: "center"
         }
 
