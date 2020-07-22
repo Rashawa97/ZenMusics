@@ -36,21 +36,6 @@ export default function ThemedNoLyrics() {
             flex: 1,
             margin: 10,
             alignItems: "center"
-        },
-        socialMedia: {
-            alignItems: "flex-start",
-
-            flexDirection: "row",
-
-            justifyContent: 'space-between',
-
-
-        },
-        SocialIcon: {
-            flex: 1,
-            margin: 5,
-            alignItems: "flex-start"
-
         }
 
     })

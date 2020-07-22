@@ -17,14 +17,16 @@ export default function ArtistTracksScreen(props: {
     const [tracks, setTracks] = useState<Track[]>([]);
 
     //this will navigate us to tracks that are related to this album /artits
-    const goToLyrics = (artistId: number, albumId: number, trackId: number,artist:string,album:string,track:string) => {
-        SaveRecentTracksService({artistId:artistId,albumId:albumId,trackId:trackId})
-        props.navigation.navigate("ArtistLyricsScreen", { artistId: artistId, 
-            albumId: albumId, 
+    const goToLyrics = (artistId: number, albumId: number, trackId: number, artist: string, album: string, track: string) => {
+        SaveRecentTracksService({ artistId: artistId, albumId: albumId, trackId: trackId });
+        props.navigation.navigate("ArtistLyricsScreen", {
+            artistId: artistId,
+            albumId: albumId,
             trackId: trackId,
-            artist:artist,
-            album:album,
-            track:track });
+            artist: artist,
+            album: album,
+            track: track
+        });
 
     }
     const styles = StyleSheet.create({})
@@ -44,22 +46,26 @@ export default function ArtistTracksScreen(props: {
         }
     }, [])
     return (
-        <DeffaultLayout title={[props.route.params.album , 'for the Artist',props.route.params.artist] 
+        <DeffaultLayout title={[props.route.params.album, 'for the Artist', props.route.params.artist]
         }>
 
             <FlatList
 
                 data={tracks}
                 keyExtractor={track => `${track.id_track}`}
-                renderItem={({ item }) => (
-                    <ThemedCard texts={[item.track]} icon={'ios-headset'} onPress={() => { goToLyrics(
-                        props.route.params.artistId,
-                         props.route.params.albumId, 
-                         item.id_track,item.track,
-                         props.route.params.album,
-                         props.route.params.artist) }} />
+                renderItem={({ item }) => {
+                    return <ThemedCard texts={[item.track]} icon={'ios-headset'} onPress={() => {
+                        goToLyrics(
+                            props.route.params.artistId,
+                            props.route.params.albumId,
+                            item.id_track,
+                            item.track,
+                            props.route.params.album,
+                            props.route.params.artist)
+                    }} />
+                }
 
-                )} />
+                } />
 
 
         </DeffaultLayout>

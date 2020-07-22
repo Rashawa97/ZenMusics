@@ -17,9 +17,9 @@ export default function ArtistAlbumsScreen(props: {
 
     const [albums, setAlbums] = useState<Album[]>([]);
     //this will navigate us to tracks that are related to this album /artits
-    const goToTracks = (artistId: number, albumId: number,album:string,artist:string ) => {
-        SaveRecentAlbumsService({albumId:albumId,artistId:artistId });
-        props.navigation.navigate("ArtistTracksScreen", { artistId: artistId, albumId: albumId,album:album,artist:artist });
+    const goToTracks = (artistId: number, albumId: number, album: string, artist: string) => {
+        SaveRecentAlbumsService({ albumId: albumId, artistId: artistId });
+        props.navigation.navigate("ArtistTracksScreen", { artistId: artistId, albumId: albumId, album: album, artist: artist });
 
     }
     const getAlbums = async (artistId: number) => {
@@ -39,22 +39,23 @@ export default function ArtistAlbumsScreen(props: {
     }, [])
 
     return (
-        <DeffaultLayout title={[props.route.params.artist+ ' Albums',props.route.params.instagram+'insta']}>
+        <DeffaultLayout title={[props.route.params.artist + ' Albums']}>
             <FlatList
 
-            data={albums}
-            keyExtractor={album => `${album.id_album}`}
-            renderItem={({ item }) => (
-                <ThemedCard texts={[item.album]} 
-                icon={'ios-albums'}onPress={()=>{
-                    goToTracks(props.route.params.artistId,
-                        item.id_album,
-                        props.route.params.artist,
-                        item.album)}} />
+                data={albums}
+                keyExtractor={album => `${album.id_album}`}
+                renderItem={({ item }) => (
+                    <ThemedCard texts={[item.album]}
+                        icon={'ios-albums'} onPress={() => {
+                            goToTracks(props.route.params.artistId,
+                                item.id_album,
+                                props.route.params.artist,
+                                item.album)
+                        }} />
 
-            )} />
-        </DeffaultLayout> 
-      
+                )} />
+        </DeffaultLayout>
+
     )
 }
 

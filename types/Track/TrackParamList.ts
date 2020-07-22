@@ -3,7 +3,10 @@ type TrackParamList = {
 
     LyricsScreen: {
         artistId: number;
-        tracktId: number;
-        albumtId: number;
+        artist: string;
+        trackId: number;
+        track: string;
+        albumId: number;
+        album: string;
     }
 }

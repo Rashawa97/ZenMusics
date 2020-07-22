@@ -3,7 +3,6 @@ type ArtistParamList = {
     ArtistAlbumsScreen : {
         artistId:number;
         artist:string;
-        instagram:string;
     }
     ArtistTracksScreen : {
         artist:string;

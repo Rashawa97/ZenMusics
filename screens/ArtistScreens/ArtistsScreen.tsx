@@ -16,8 +16,8 @@ export default function ArtistsScreen(props:
 
 
 
-    const goToAlbums = (artistId: number,artist:string,instagram:string) => {
-        props.navigation.navigate("ArtistAlbumsScreen", { artistId: artistId ,artist:artist,instagram:instagram});
+    const goToAlbums = (artistId: number,artist:string) => {
+        props.navigation.navigate("ArtistAlbumsScreen", { artistId: artistId ,artist:artist});
     }
     //if first page ==1 then privious button must be disabled
     //if Last page page ==total number of pages then next button must be disabled
@@ -44,7 +44,7 @@ export default function ArtistsScreen(props:
                 data={artists}
                 keyExtractor={artist => `${artist.id_artist}`}
                 renderItem={({ item }) => (
-                    <ArtistComponent artist={item} onPress={()=>{goToAlbums(item.id_artist,item.artist,item.instagram)}} />
+                    <ArtistComponent artist={item} onPress={()=>{goToAlbums(item.id_artist,item.artist)}} />
 
                 )} />
         </PaginationLayout>

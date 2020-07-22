@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { Text, useThemeColor } from './Themed'
 import { Ionicons } from '@expo/vector-icons';
+import { FontSizes } from '../constants/FontSizes';
 
 export default function ThemedCard(props: { texts: string[], icon: string, onPress: () => void }) {
     let { texts, icon, onPress } = props;
@@ -49,15 +50,15 @@ export default function ThemedCard(props: { texts: string[], icon: string, onPre
             <View style={styles.container} >
 
                 <View style={styles.name} >
-                    {texts.map(text => (
+                    {texts.map((text:string,index:number) => (
 
-                        <Text key={text} style={styles.text}>
+                        <Text key={`${text}${index}`} style={styles.text}>
                             {text}
                         </Text>
                     ))}
                 </View>
                 <View style={styles.icon}>
-                    <Ionicons name={icon} size={24} color={pressed ? useThemeColor({}, "background") : useThemeColor({}, "accentColor")} />
+                    <Ionicons name={icon} size={FontSizes.xxLarge} color={pressed ? useThemeColor({}, "background") : useThemeColor({}, "accentColor")} />
                 </View>
             </View>
         </TouchableWithoutFeedback>

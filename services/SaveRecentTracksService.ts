@@ -1,7 +1,7 @@
 import { AsyncStorage } from "react-native";
 
 const TRACKS = "TRACKS";
-const MAX_RECENT_TRACKS = 20;
+const MAX_RECENT_TRACKS = 10;
 
 export async function SaveRecentTracksService(track:TrackRecord)
 {
@@ -21,7 +21,7 @@ export async function SaveRecentTracksService(track:TrackRecord)
 
     if(recentTracks.length>=MAX_RECENT_TRACKS)
     {
-        recentTracks.splice(1,1);
+        recentTracks.splice(0,1);
     }
 
     recentTracks.push(track);
@@ -29,5 +29,5 @@ export async function SaveRecentTracksService(track:TrackRecord)
     let newRecentTracksString = await JSON.stringify(recentTracks);
 
     await AsyncStorage.setItem(TRACKS,newRecentTracksString);
-
+    
 }

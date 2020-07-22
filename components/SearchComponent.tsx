@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { useThemeColor } from '../components/Themed'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { GetArtistsPageService } from '../services/GetArtistsPageService'
@@ -7,50 +7,39 @@ import ArtistComponent from '../components/Artists/ArtistComponent'
 import ThemedButton from '../components/ThemedButton'
 import { Ionicons } from '@expo/vector-icons'
 import { FontSizes } from '../constants/FontSizes'
+import ThemedTextInput from './ThemedTextInput'
 
-export default function ThemedLyrics(props: { lyrics: string }) {
+export default function SearchComponent(props: { onPress: (query: string) => void }) {
+    let { onPress } = props;
 
-    let { lyrics } = props;
+    const [query, setQuery] = useState("");
+
+
     const styles = StyleSheet.create({
-        mainContainer: { flex: 1 },
+        mainContainer: {
+            flex: 1,
+        },
         container: {
-
-            padding: 45,
+            borderLeftColor: useThemeColor({}, "accentColor"),
             margin: 5,
             alignItems: "center",
             flexDirection: "row",
-
+            borderLeftWidth: 5,
             justifyContent: 'space-between',
             backgroundColor: useThemeColor({}, "background"),
         },
         text: {
             color: useThemeColor({}, "accentColor"),
             fontWeight: 'bold',
-            fontSize: FontSizes.large,
+            fontSize: FontSizes.xLarge,
         }, name: {
             flex: 4,
 
 
         },
         icon: {
-            flex: 1,
             margin: 10,
             alignItems: "center"
-        },
-        socialMedia: {
-            alignItems: "flex-start",
-
-            flexDirection: "row",
-
-            justifyContent: 'space-between',
-
-
-        },
-        SocialIcon: {
-            flex: 1,
-            margin: 5,
-            alignItems: "flex-start"
-
         }
 
     })
@@ -59,19 +48,21 @@ export default function ThemedLyrics(props: { lyrics: string }) {
 
     return (
         <View style={styles.mainContainer}>
-            <ScrollView contentContainerStyle={styles.container} >
+            <View style={styles.container} >
 
-                <View style={styles.name} >
-                    <Text style={styles.text}> {lyrics}</Text>
+                <ThemedTextInput placeHolder={'Search Word'} value={query} onValueChanged={(value) => setQuery(value)} />
 
+                <View style={styles.icon} >
+                    <Ionicons name={'ios-search'} size={FontSizes.xxLarge * 2} color={useThemeColor({}, "accentColor")} onPress={() => onPress(query)} />
                 </View>
-
-            </ScrollView>
+            </View>
 
 
 
 
         </View>
+
+
     )
 }
 

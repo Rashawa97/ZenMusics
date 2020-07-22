@@ -5,7 +5,7 @@ type Track = {
     album?:string;
     id_track: number;
     track:string;
-    hasLyrics?:boolean;
-    Lyrics?:string;
+    haslyrics?:boolean;
+    lyrics?:string;
 
 }

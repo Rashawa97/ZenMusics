@@ -10,7 +10,7 @@ import { FontSizes } from '../../constants/FontSizes'
 
 export default function DefaultLayout(props:
     {
-        children: JSX.Element;
+        children: JSX.Element|JSX.Element[];
         title: string[];
 
 
@@ -43,21 +43,6 @@ export default function DefaultLayout(props:
             flex: 1,
             margin: 10,
             alignItems: "center"
-        },
-        socialMedia: {
-            alignItems: "flex-start",
-
-            flexDirection: "row",
-
-            justifyContent: 'space-between',
-
-
-        },
-        SocialIcon:{
-          flex:1,
-            margin: 5,
-            alignItems: "flex-start"
-
         }
 
     })
@@ -70,26 +55,13 @@ export default function DefaultLayout(props:
 
                 <View style={styles.name} >
 
-                    {title.map(text => (
+                    {title.map((text:string,index:number) => (
 
-                        <Text key={text} style={styles.text}>
+                        <Text key={`${text}${index}`} style={styles.text}>
                             {text}
                         </Text>
                     ))}
 
-
-                    <View style={styles.socialMedia}>
-                        <View style={styles.SocialIcon} >
-                            <Ionicons name={'logo-facebook'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
-                        </View>
-                        <View style={styles.SocialIcon} >
-                            <Ionicons name={'logo-instagram'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
-                        </View>
-                        <View style={styles.SocialIcon} >
-                            <Ionicons name={'logo-twitter'} size={FontSizes.regular} color={useThemeColor({}, "background")} />
-                        </View>
-
-                    </View>
 
                 </View>
                 <View style={styles.icon} >
